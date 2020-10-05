@@ -1,15 +1,19 @@
+#include <tictactoe/tictactoe.h>
+
 #include <iostream>
 #include <string>
-
-#include <tictactoe/tictactoe.h>
 
 using tictactoe::BoardState;
 
 int main() {
-  std::cout << "Type a board string: ";
+  /*
+std::cout << "Type a board string: ";
 
-  std::string board_string;
-  std::cin >> board_string;
+std::string board_string;
+std::cin >> board_string;
+   */
+
+  std::string board_string = "ooox.x.x.";
 
   BoardState state = tictactoe::Board(board_string).EvaluateBoard();
 

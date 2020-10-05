@@ -39,7 +39,18 @@ class Board {
   BoardState EvaluateBoard() const;
 
  private:
-  /// TODO: add your helper functions and member variables here
+  std::string upper_case_board_;
+  int side_length_;
+  std::string o_winner_;
+  std::string x_winner_;
+  bool CheckSize(int num);
+  int GetNumChar(char player) const;
+  std::string GetRow(int row_number) const;
+  std::string GetColumn(int col_number) const;
+  std::string GetDiag(bool diag1) const;
+  bool GetPlayerWin(std::string player_win) const;
+  int GetNumberOfRowOrColumnWins(std::string sequence) const;
+  bool AreDiagonalsValid() const;
 };
 
 }  // namespace tictactoe
