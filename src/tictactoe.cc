@@ -144,7 +144,7 @@ std::string Board::GetDiag(bool diag1) const {
  * @param player_win Which player to look for, X or O
  * @return If the passed player has won or not
  */
-bool Board::GetPlayerWin(string player_win) const {
+bool Board::GetPlayerWin(const string& player_win) const {
   for (int i = 0; i < side_length_; i++) {
     string row_string = GetRow(i);
     string col_string = GetColumn(i);
@@ -165,7 +165,7 @@ bool Board::GetPlayerWin(string player_win) const {
  * @param sequence Either row or column to signify which to look at
  * @return Number of wins found in all rows or columns
  */
-int Board::GetNumberOfRowOrColumnWins(string sequence) const {
+int Board::GetNumberOfRowOrColumnWins(const string& sequence) const {
   if (sequence != "row" && sequence != "column") {
     throw std::invalid_argument("The string provided does not represent a valid sequence.");
   }

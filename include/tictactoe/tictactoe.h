@@ -48,8 +48,8 @@ class Board {
   std::string GetRow(int row_number) const;
   std::string GetColumn(int col_number) const;
   std::string GetDiag(bool diag1) const;
-  bool GetPlayerWin(std::string player_win) const;
-  int GetNumberOfRowOrColumnWins(std::string sequence) const;
+  bool GetPlayerWin(const std::string& player_win) const;
+  int GetNumberOfRowOrColumnWins(const std::string& sequence) const;
   bool AreDiagonalsValid() const;
 };
 
