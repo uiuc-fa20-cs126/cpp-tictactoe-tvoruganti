@@ -10,7 +10,8 @@ namespace tictactoe {
 using std::string;
 
 Board::Board(const string &board) {
-  if (board.length() < 2 || !CheckSize(board.length())) {
+  //tic tac toe board must have a length of at least 1 for a the smallest 1x1 board
+  if (board.length() < 1 || !CheckSize(board.length())) {
     throw std::invalid_argument("The string provided is not a valid board.");
   }
   upper_case_board_ = board;
@@ -26,23 +27,29 @@ Board::Board(const string &board) {
 }
 
 BoardState Board::EvaluateBoard() const {
+  //checks number of x's and o's and sees if there's a legal amount
   int number_of_os = GetNumChar('O');
   int number_of_xs = GetNumChar('X');
   if (number_of_os > number_of_xs || number_of_xs - number_of_os > 1) {
     return BoardState::UnreachableState;
   }
 
+  //counts the number of wins in columns and rows since only 1 win condition may exist in a board in all instances of it
   int wins_from_row = GetNumberOfRowOrColumnWins("row");
   int wins_from_col = GetNumberOfRowOrColumnWins("column");
   bool x_wins = GetPlayerWin(x_winner_);
   bool o_wins = GetPlayerWin(o_winner_);
 
+  //diagonals must be legal
   if (!AreDiagonalsValid()) {
     return BoardState::UnreachableState;
+    //there can only be one winning sequence
   } else if (wins_from_col > 1 || wins_from_row > 1) {
     return BoardState::UnreachableState;
+    //a winning board must have a legal amount of moves by each player
   } else if ((x_wins && (number_of_os == number_of_xs)) || (o_wins && (number_of_os < number_of_xs))) {
     return BoardState::UnreachableState;
+    //both players cannot win
   } else if (x_wins && o_wins) {
     return BoardState::UnreachableState;
   } else if (x_wins) {
@@ -160,8 +167,7 @@ bool Board::GetPlayerWin(string player_win) const {
  */
 int Board::GetNumberOfRowOrColumnWins(string sequence) const {
   if (sequence != "row" && sequence != "column") {
-    throw std::invalid_argument(
-        "The string provided does not represent a valid sequence.");
+    throw std::invalid_argument("The string provided does not represent a valid sequence.");
   }
   int count = 0;
   string potential_win = "";

@@ -13,7 +13,7 @@ std::string board_string;
 std::cin >> board_string;
    */
 
-  std::string board_string = "ooox.x.x.";
+  std::string board_string = "ox.xoox.x.o.xxoo.x.xooxo.";
 
   BoardState state = tictactoe::Board(board_string).EvaluateBoard();
 
