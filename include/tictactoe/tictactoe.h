@@ -31,7 +31,7 @@ class Board {
    * This method throws a std::invalid_argument exception if the string provided
    * is not a valid board.
    */
-  Board(const std::string& board);
+  Board(const std::string &board);
 
   /**
    * Evaluates the state of the board.

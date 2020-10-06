@@ -1,7 +1,9 @@
 #include "tictactoe/tictactoe.h"
 
 #include <stdexcept>
+#include <cmath>
 #include <string>
+#include <algorithm>
 
 namespace tictactoe {
 
@@ -189,6 +191,7 @@ bool Board::AreDiagonalsValid() const {
   bool diag2_xwin = (diag_string2 == x_winner_);
   bool diag2_owin = (diag_string2 == o_winner_);
 
+  //You can only win on diagonals if the board has an odd side length since the center tile will be shared
   if (((diag1_owin && diag2_owin) || (diag1_xwin && diag2_xwin)) &&
       (side_length_ % 2 == 0)) {
     return false;
