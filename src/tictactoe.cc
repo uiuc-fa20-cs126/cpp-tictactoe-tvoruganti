@@ -20,7 +20,7 @@ Board::Board(const string &board) {
                  upper_case_board_.begin(), ::toupper);
   o_winner_ = "";
   x_winner_ = "";
-  for (int i = 0; i < side_length_; i++) {
+  for (size_t i = 0; i < side_length_; i++) {
     o_winner_ += "O";
     x_winner_ += "X";
   }
@@ -93,7 +93,7 @@ int Board::GetNumChar(char player) const {
 std::string Board::GetRow(int row_number) const {
   string row_string = "";
   int start = row_number * side_length_;
-  for (int i = start; i < side_length_ + start; i++) {
+  for (size_t i = start; i < side_length_ + start; i++) {
     char ch = upper_case_board_[i];
     row_string += ch;
   }
@@ -107,7 +107,7 @@ std::string Board::GetRow(int row_number) const {
  */
 std::string Board::GetColumn(int column_number) const {
   string col_string = "";
-  for (int i = column_number; i < upper_case_board_.length(); i += side_length_) {
+  for (size_t i = column_number; i < upper_case_board_.length(); i += side_length_) {
     char ch = upper_case_board_[i];
     col_string += ch;
   }
@@ -123,14 +123,14 @@ std::string Board::GetDiag(bool diag1) const {
   string diag_string = "";
   if (diag1) {
     int counter = 0;
-    for (int i = 0; i < side_length_; i++) {
+    for (size_t i = 0; i < side_length_; i++) {
       char ch = upper_case_board_[side_length_ * counter + counter];
       diag_string += ch;
       counter++;
     }
   } else {
     int start = side_length_ - 1;
-    for (int i = 1; i < side_length_ + 1; i++) {
+    for (size_t i = 1; i < side_length_ + 1; i++) {
       char ch = upper_case_board_[start * i];
       diag_string += ch;
     }
@@ -145,7 +145,7 @@ std::string Board::GetDiag(bool diag1) const {
  * @return If the passed player has won or not
  */
 bool Board::GetPlayerWin(const string& player_win) const {
-  for (int i = 0; i < side_length_; i++) {
+  for (size_t i = 0; i < side_length_; i++) {
     string row_string = GetRow(i);
     string col_string = GetColumn(i);
     if (row_string == player_win || col_string == player_win) {
@@ -171,7 +171,7 @@ int Board::GetNumberOfRowOrColumnWins(const string& sequence) const {
   }
   int count = 0;
   string potential_win = "";
-  for (int i = 0; i < side_length_; i++) {
+  for (size_t i = 0; i < side_length_; i++) {
     if (sequence == "row") {
       potential_win = GetRow(i);
     } else if (sequence == "column") {
